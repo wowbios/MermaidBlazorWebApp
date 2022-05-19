@@ -6,7 +6,7 @@ using FluentMermaid.Flowchart.Render;
 
 namespace FluentMermaid.Flowchart;
 
-public record Relation : IRenderTo<StringBuilder>
+internal record Relation : IRenderTo<StringBuilder>
 {
     internal Relation(
         INode @from,
