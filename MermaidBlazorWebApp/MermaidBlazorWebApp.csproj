@@ -7,4 +7,8 @@
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\FluentMermaid\FluentMermaid.csproj" />
+    </ItemGroup>
+
 </Project>

@@ -8,7 +8,12 @@
 
 <div id="mermaid" class="mermaid"></div>
 
+<h1>Raw</h1>
+<div>@_raw</div>
+
+
 @code {
+    MarkupString _raw;
     private string? _mermaidText;
 
     private async Task OnLoad()
@@ -17,6 +22,7 @@
         var uri = new Uri(new Uri(NavigationManager.BaseUri), "/api/Mermaid");
         var result = await client.GetAsync(uri);
         _mermaidText = await result.Content.ReadAsStringAsync();
+        _raw = new MarkupString(_mermaidText.Replace("\n", "<br/>"));
         await JS.InvokeVoidAsync("reset_mermaid", _mermaidText);
     }
 }
