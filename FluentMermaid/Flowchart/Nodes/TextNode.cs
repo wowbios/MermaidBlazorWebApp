@@ -15,8 +15,8 @@ internal sealed record TextNode(
         => target
             .Append(Id)
             .Append(Shape.RenderStart())
-            .Append("[\"")
+            .Append('"')
             .Append(Text)
-            .Append("\"]")
+            .Append('"')
             .AppendLine(Shape.RenderEnd());
 }

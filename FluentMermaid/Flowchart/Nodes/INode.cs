@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using FluentMermaid.Flowchart.Enum;
 using FluentMermaid.Flowchart.Render;
 
 namespace FluentMermaid.Flowchart.Nodes;
@@ -6,6 +7,19 @@ namespace FluentMermaid.Flowchart.Nodes;
 public interface INode : IRenderTo<StringBuilder>
 {
     string Id { get; }
+
+    INode LinkTo(
+        string text = "",
+        int length = 1,
+        Link linkType = Link.Arrow,
+        params INode[] nodes);
+
+    INode LinkFrom(
+        string text = "",
+        int length = 1,
+        Link linkType = Link.Arrow,
+        params INode[] nodes);
+
     INode ArrowTo(INode node);
     INode ArrowTo(INode node, string text);
     INode ArrowTo(params INode[] nodes);

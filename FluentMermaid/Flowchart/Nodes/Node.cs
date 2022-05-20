@@ -17,6 +17,22 @@ internal abstract record Node : INode
     public Flowchart Chart { get; }
     
     public string Id { get; }
+    
+    public INode LinkTo(string text = "", int length = 1, Link linkType = Link.Arrow, params INode[] nodes)
+    {
+        foreach (INode other in nodes)
+            Chart.Link(this, other, linkType, text, length);
+        
+        return this;
+    }
+
+    public INode LinkFrom(string text = "", int length = 1, Link linkType = Link.Arrow, params INode[] nodes)
+    {
+        foreach (INode other in nodes)
+            Chart.Link(other, this, linkType, text, length);
+        
+        return this;
+    }
 
     #region Arrow
 

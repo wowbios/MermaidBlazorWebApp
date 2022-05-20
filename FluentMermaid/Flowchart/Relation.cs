@@ -12,11 +12,13 @@ internal record Relation : IRenderTo<StringBuilder>
         INode @from,
         INode to,
         Link link,
-        string text)
+        string text,
+        int length)
     {
         From = @from;
         To = to;
         Text = text;
+        Length = length;
         Link = link;
     }
 
@@ -27,13 +29,17 @@ internal record Relation : IRenderTo<StringBuilder>
     public Link Link { get; }
     
     public string Text { get; }
-    
+
+    public int Length { get; }
+
     public void RenderTo(StringBuilder builder)
     {
-        builder.Append(From.Id)
-            .Append(' ')
-            .Append(Link.Render())
+        builder
+            .Append(From.Id)
             .Append(' ');
+
+        Link.RenderTo(builder, Length);
+        builder.Append(' ');
 
         if (!string.IsNullOrEmpty(Text))
         {

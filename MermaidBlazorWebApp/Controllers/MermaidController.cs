@@ -13,12 +13,11 @@ public class MermaidController : ControllerBase
     {
         var chart = Flowchart.Create(Orientation.TopToBottom);
         var animal = chart.TextNode("Animal", Shape.Hexagon);
-        var cat = chart.TextNode("Cat", Shape.Circle);
+        var cat = chart.TextNode("Cat #quot; ss", Shape.Circle);
         var dog = chart.TextNode("Dog", Shape.Trapezoid);
         
         animal.ArrowFrom(cat, dog);
-        cat.ArrowTo(dog);
-        dog.ArrowTo(cat);
+        cat.LinkTo("HA#TES", 1, Link.Circle, dog);
         // cat.DoubleArrow(dog) ?
 
         return chart.Render();
