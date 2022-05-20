@@ -4,7 +4,7 @@ using FluentMermaid.Flowchart.Extensions;
 
 namespace FluentMermaid.Flowchart.Nodes;
 
-internal record TextNode(
+internal sealed record TextNode(
     Flowchart Chart,
     string Id,
     string Text,
@@ -15,6 +15,8 @@ internal record TextNode(
         => target
             .Append(Id)
             .Append(Shape.RenderStart())
+            .Append("[\"")
             .Append(Text)
+            .Append("\"]")
             .AppendLine(Shape.RenderEnd());
 }
