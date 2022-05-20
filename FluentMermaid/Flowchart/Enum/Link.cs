@@ -13,7 +13,7 @@ public enum Link
     Open,
     
     /// <summary>
-    /// -.->
+    /// -.-
     /// </summary>
     Dotted,
     

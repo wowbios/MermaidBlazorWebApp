@@ -29,9 +29,17 @@ public class Flowchart : IRenderTo<StringBuilder>
         return textNode;
     }
 
-    public void Link(INode from, INode to, Link link, string text)
+    public void Link(
+        INode from,
+        INode to,
+        Link link,
+        string text,
+        int length = 1)
     {
-        Relation relation = new(from, to, link, text);
+        if (length < 1)
+            throw new ArgumentException("Link length should be more or equal 1", nameof(length));
+
+        Relation relation = new(from, to, link, text, length);
         Relations.Add(relation);
     }
 

@@ -3,10 +3,12 @@
    2. [Orientation](https://mermaid-js.github.io/mermaid/#/flowchart?id=flowchart-orientation) :heavy_check_mark:
    3. [Shapes](https://mermaid-js.github.io/mermaid/#/flowchart?id=node-shapes) :heavy_check_mark:
    4. [Links](https://mermaid-js.github.io/mermaid/#/flowchart?id=links-between-nodes) :heavy_check_mark:
-   5. [Link lengths](https://mermaid-js.github.io/mermaid/#/flowchart?id=minimum-length-of-a-link) :x:
-   6. [Subgraph](https://mermaid-js.github.io/mermaid/#/flowchart?id=subgraphs) :x:
-   7. [Interaction](https://mermaid-js.github.io/mermaid/#/flowchart?id=interaction) :x:
-   8. Styling
+      1. Add dotted arrow, thick arrow :x:
+   5. [Link lengths](https://mermaid-js.github.io/mermaid/#/flowchart?id=minimum-length-of-a-link) :heavy_check_mark:
+   6. [Special characters](https://mermaid-js.github.io/mermaid/#/flowchart?id=special-characters-that-break-syntax) :x:
+   7. [Subgraph](https://mermaid-js.github.io/mermaid/#/flowchart?id=subgraphs) :x:
+   8. [Interaction](https://mermaid-js.github.io/mermaid/#/flowchart?id=interaction) :x:
+   9. Styling
       1. [Links](https://mermaid-js.github.io/mermaid/#/flowchart?id=styling-links) :x:
       2. [Nodes](https://mermaid-js.github.io/mermaid/#/flowchart?id=styling-a-node) :x:
       3. [Css](https://mermaid-js.github.io/mermaid/#/flowchart?id=css-classes) :x:
