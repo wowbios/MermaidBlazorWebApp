@@ -2,6 +2,7 @@
 using FluentMermaid.Flowchart.Enum;
 using FluentMermaid.Flowchart.Extensions;
 using FluentMermaid.Flowchart.Interfaces;
+using FluentMermaid.Flowchart.Interfaces.Styling;
 using FluentMermaid.Flowchart.Nodes.Interaction;
 
 namespace FluentMermaid.Flowchart.Nodes;
@@ -16,6 +17,8 @@ internal class FlowchartRootNode : IFlowChart
     public Orientation Orientation { get; }
 
     public IInteraction Interaction { get; } = new InteractionNode("interactions");
+
+    public IStyling Styling { get; } = new Styling.Styling("styling");
 
     private HashSet<INode> Nodes { get; } = new();
 
@@ -62,6 +65,7 @@ internal class FlowchartRootNode : IFlowChart
             relation.RenderTo(builder);
         
         Interaction.RenderTo(builder);
+        Styling.RenderTo(builder);
 
         return builder.ToString();
     }

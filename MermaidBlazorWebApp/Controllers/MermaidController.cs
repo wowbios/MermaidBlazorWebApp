@@ -35,6 +35,12 @@ public class MermaidController : ControllerBase
         chart.Interaction.OnClickCall(dog, "alert(1)", "DOG TOolTop");
         chart.Interaction.Hyperlink(kitchen, new Uri("https://github.com"), "to git", HyperlinkTarget.Blank);
         
+        chart.Styling.Set(cat, "fill: #bff");
+
+        var myClass = chart.Styling.AddClass("color:pink, background-color: black");
+        chart.Styling.Set(kitchen, myClass);
+        chart.Styling.Set(outside, myClass);
+        
         return chart.Render();
     }
 }
