@@ -18,6 +18,8 @@ internal class RootNode : IFlowChart
 
     private HashSet<Relation> Relations { get; } = new();
 
+    private List<(string id, bool isCall, string func)> Callbacks { get; } = new();
+
     public INode TextNode(string content, Shape shape)
     {
         TextNode textNode = new(this, CreateNodeId(), content, shape);
@@ -46,6 +48,22 @@ internal class RootNode : IFlowChart
         Relations.Add(relation);
     }
 
+    public void CallbackFunction(INode node, string functionName)
+    {
+        if (string.IsNullOrWhiteSpace(functionName))
+            throw new ArgumentException("Function name should not be null or empty", nameof(functionName));
+
+        Callbacks.Add((node.Id, false, functionName));
+    }
+
+    public void CallbackFunctionCall(INode node, string functionCall)
+    {
+        if (string.IsNullOrWhiteSpace(functionCall))
+            throw new ArgumentException("Function call should not be null or empty", nameof(functionCall));
+        
+        Callbacks.Add((node.Id, true, functionCall));
+    }
+
     public string Render()
     {
         StringBuilder builder = new();
@@ -57,6 +75,18 @@ internal class RootNode : IFlowChart
 
         foreach (Relation relation in Relations)
             relation.RenderTo(builder);
+
+        foreach ((string id, bool isCall, string func) in Callbacks)
+        {
+            builder.Append("click ")
+                .Append(id)
+                .Append(' ');
+            if (isCall)
+                builder.Append("call ");
+            
+            builder.AppendLine(func);
+        }
+        
         return builder.ToString();
     }
 

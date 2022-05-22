@@ -7,7 +7,7 @@
    5. [Link lengths](https://mermaid-js.github.io/mermaid/#/flowchart?id=minimum-length-of-a-link) :heavy_check_mark:
    6. [Special characters](https://mermaid-js.github.io/mermaid/#/flowchart?id=special-characters-that-break-syntax) :heavy_check_mark:
    7. [Subgraph](https://mermaid-js.github.io/mermaid/#/flowchart?id=subgraphs) :heavy_check_mark:
-   8. [Interaction](https://mermaid-js.github.io/mermaid/#/flowchart?id=interaction) :x:
+   8. [Interaction](https://mermaid-js.github.io/mermaid/#/flowchart?id=interaction) :heavy_check_mark:
    9. Styling
       1. [Links](https://mermaid-js.github.io/mermaid/#/flowchart?id=styling-links) :x:
       2. [Nodes](https://mermaid-js.github.io/mermaid/#/flowchart?id=styling-a-node) :x:
