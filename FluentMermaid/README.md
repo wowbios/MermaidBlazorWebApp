@@ -11,7 +11,7 @@
    9. Styling
       1. [Links](https://mermaid-js.github.io/mermaid/#/flowchart?id=styling-links) :x: wont be added
       2. [Nodes](https://mermaid-js.github.io/mermaid/#/flowchart?id=styling-a-node) :heavy_check_mark:
-      3. [Css](https://mermaid-js.github.io/mermaid/#/flowchart?id=css-classes) :x:
+      3. [Css](https://mermaid-js.github.io/mermaid/#/flowchart?id=css-classes) :heavy_check_mark:
 2. [Sequence diagram](https://mermaid-js.github.io/mermaid/#/sequenceDiagram) :x:
 3. [Class diagram](https://mermaid-js.github.io/mermaid/#/classDiagram) :x:
 4. [State diagram](https://mermaid-js.github.io/mermaid/#/stateDiagram) :x:
