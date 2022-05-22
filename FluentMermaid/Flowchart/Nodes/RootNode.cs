@@ -1,32 +1,35 @@
 ﻿using System.Text;
 using FluentMermaid.Flowchart.Enum;
 using FluentMermaid.Flowchart.Extensions;
-using FluentMermaid.Flowchart.Nodes;
-using FluentMermaid.Flowchart.Render;
+using FluentMermaid.Flowchart.Interfaces;
 
-namespace FluentMermaid.Flowchart;
+namespace FluentMermaid.Flowchart.Nodes;
 
-public class Flowchart : IRenderTo<StringBuilder>
+internal class RootNode : IFlowChart
 {
-    private Flowchart(Orientation orientation)
+    internal RootNode(Orientation orientation)
     {
         Orientation = orientation;
     }
     
     public Orientation Orientation { get; }
 
-    internal HashSet<INode> Nodes { get; } = new();
-    
-    internal HashSet<Relation> Relations { get; } = new();
+    private HashSet<INode> Nodes { get; } = new();
 
-    public static Flowchart Create(Orientation orientation)
-        => new(orientation);
+    private HashSet<Relation> Relations { get; } = new();
 
     public INode TextNode(string content, Shape shape)
     {
         TextNode textNode = new(this, CreateNodeId(), content, shape);
         Nodes.Add(textNode);
         return textNode;
+    }
+
+    public ISubGraph SubGraph(string title)
+    {
+        var subgraph = new SubGraphNode(CreateNodeId(), title);
+        Nodes.Add(subgraph);
+        return subgraph;
     }
 
     public void Link(
@@ -46,14 +49,6 @@ public class Flowchart : IRenderTo<StringBuilder>
     public string Render()
     {
         StringBuilder builder = new();
-        RenderTo(builder);
-        return builder.ToString();
-    }
-
-    private string CreateNodeId() => "id" + Nodes.Count;
-
-    public void RenderTo(StringBuilder builder)
-    {
         builder.Append("flowchart ");
         builder.AppendLine(Orientation.Render());
 
@@ -62,5 +57,8 @@ public class Flowchart : IRenderTo<StringBuilder>
 
         foreach (Relation relation in Relations)
             relation.RenderTo(builder);
+        return builder.ToString();
     }
+
+    private string CreateNodeId() => "id" + Nodes.Count;
 }

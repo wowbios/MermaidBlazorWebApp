@@ -1,4 +1,4 @@
-﻿namespace FluentMermaid.Flowchart.Render;
+﻿namespace FluentMermaid.Flowchart.Interfaces;
 
 public interface IRenderTo<in TTarget>
 {
