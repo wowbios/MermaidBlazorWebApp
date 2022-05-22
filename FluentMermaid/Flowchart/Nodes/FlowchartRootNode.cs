@@ -2,23 +2,24 @@
 using FluentMermaid.Flowchart.Enum;
 using FluentMermaid.Flowchart.Extensions;
 using FluentMermaid.Flowchart.Interfaces;
+using FluentMermaid.Flowchart.Nodes.Interaction;
 
 namespace FluentMermaid.Flowchart.Nodes;
 
-internal class RootNode : IFlowChart
+internal class FlowchartRootNode : IFlowChart
 {
-    internal RootNode(Orientation orientation)
+    internal FlowchartRootNode(Orientation orientation)
     {
         Orientation = orientation;
     }
     
     public Orientation Orientation { get; }
 
+    public IInteraction Interaction { get; } = new InteractionNode("interactions");
+
     private HashSet<INode> Nodes { get; } = new();
 
     private HashSet<Relation> Relations { get; } = new();
-
-    private List<(string id, bool isCall, string func)> Callbacks { get; } = new();
 
     public INode TextNode(string content, Shape shape)
     {
@@ -48,22 +49,6 @@ internal class RootNode : IFlowChart
         Relations.Add(relation);
     }
 
-    public void CallbackFunction(INode node, string functionName)
-    {
-        if (string.IsNullOrWhiteSpace(functionName))
-            throw new ArgumentException("Function name should not be null or empty", nameof(functionName));
-
-        Callbacks.Add((node.Id, false, functionName));
-    }
-
-    public void CallbackFunctionCall(INode node, string functionCall)
-    {
-        if (string.IsNullOrWhiteSpace(functionCall))
-            throw new ArgumentException("Function call should not be null or empty", nameof(functionCall));
-        
-        Callbacks.Add((node.Id, true, functionCall));
-    }
-
     public string Render()
     {
         StringBuilder builder = new();
@@ -75,18 +60,9 @@ internal class RootNode : IFlowChart
 
         foreach (Relation relation in Relations)
             relation.RenderTo(builder);
-
-        foreach ((string id, bool isCall, string func) in Callbacks)
-        {
-            builder.Append("click ")
-                .Append(id)
-                .Append(' ');
-            if (isCall)
-                builder.Append("call ");
-            
-            builder.AppendLine(func);
-        }
         
+        Interaction.RenderTo(builder);
+
         return builder.ToString();
     }
 

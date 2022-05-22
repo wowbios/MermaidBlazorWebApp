@@ -31,8 +31,9 @@ public class MermaidController : ControllerBase
         chart.Link(cat, kitchen, Link.Open, "prefers");
         chart.Link(cat, bedroom, Link.Open, "ALLOWED");
         
-        chart.CallbackFunction(cat, "alert");
-        chart.CallbackFunctionCall(dog, "alert(1)");
+        chart.Interaction.OnClick(cat, "alert", "CAT TOOLTIP");
+        chart.Interaction.OnClickCall(dog, "alert(1)", "DOG TOolTop");
+        chart.Interaction.Hyperlink(kitchen, new Uri("https://github.com"), "to git", HyperlinkTarget.Blank);
         
         return chart.Render();
     }

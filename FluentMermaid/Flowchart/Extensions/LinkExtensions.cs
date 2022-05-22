@@ -3,7 +3,7 @@ using FluentMermaid.Flowchart.Enum;
 
 namespace FluentMermaid.Flowchart.Extensions;
 
-public static class LinkExtensions
+internal static class LinkExtensions
 {
     public static void RenderTo(
         this Link link,

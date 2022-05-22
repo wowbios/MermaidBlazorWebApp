@@ -2,7 +2,7 @@
 
 namespace FluentMermaid.Flowchart.Extensions;
 
-public static class OrientationExtensions
+internal static class OrientationExtensions
 {
     public static string Render(this Orientation orientation)
         => orientation switch

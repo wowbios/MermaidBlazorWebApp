@@ -18,7 +18,10 @@
 <script src="~/mermaid.min.js"></script>
 
 <script type="text/javascript">
-    mermaid.initialize({startOnLoad: false, securityLevel: 'loose'});
+    mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: 'loose',
+        htmlLabels:true});
     window.reset_mermaid = function (diagram) 
     {
         const element = document.querySelector('#mermaid');

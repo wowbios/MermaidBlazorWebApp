@@ -2,7 +2,7 @@
 
 namespace FluentMermaid.Flowchart.Extensions;
 
-public static class ShapeExtensions
+internal static class ShapeExtensions
 {
     public static string RenderStart(this Shape shape)
         => shape switch

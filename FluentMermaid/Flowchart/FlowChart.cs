@@ -6,5 +6,5 @@ namespace FluentMermaid.Flowchart;
 
 public static class FlowChart
 {
-    public static IFlowChart Create(Orientation orientation) => new RootNode(orientation);
+    public static IFlowChart Create(Orientation orientation) => new FlowchartRootNode(orientation);
 }
