@@ -11,13 +11,13 @@ public class MermaidController : ControllerBase
     [HttpGet]
     public string Get()
     {
-        var chart = Flowchart.Create(Orientation.TopToBottom);
+        var chart = Flowchart.Create(Orientation.RightToLeft);
         var animal = chart.TextNode("Animal", Shape.Hexagon);
-        var cat = chart.TextNode("Cat #quot; ss", Shape.Circle);
+        var cat = chart.TextNode("Cat #quot;\" < > #124;ss", Shape.Circle);
         var dog = chart.TextNode("Dog", Shape.Trapezoid);
         
         animal.ArrowFrom(cat, dog);
-        cat.LinkTo("HA#TES", 1, Link.Circle, dog);
+        cat.LinkTo("Cat #quot;\" < > #124;ss", 1, Link.Circle, dog);
         // cat.DoubleArrow(dog) ?
 
         return chart.Render();

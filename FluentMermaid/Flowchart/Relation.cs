@@ -44,9 +44,9 @@ internal record Relation : IRenderTo<StringBuilder>
         if (!string.IsNullOrEmpty(Text))
         {
             builder
-                .Append('|')
-                .Append(Text)
-                .Append('|')
+                .Append("|\"")
+                .WriteEscaped(Text)
+                .Append("\"|")
                 .Append(' ');
         }
         builder.AppendLine(To.Id);
