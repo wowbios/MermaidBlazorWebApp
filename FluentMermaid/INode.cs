@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace FluentMermaid.Flowchart.Interfaces;
+namespace FluentMermaid;
 
 public interface INode : IRenderTo<StringBuilder>
 {

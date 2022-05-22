@@ -1,6 +1,8 @@
 ﻿using FluentMermaid.Flowchart;
 using FluentMermaid.Flowchart.Enum;
 using FluentMermaid.Flowchart.Nodes;
+using FluentMermaid.SequenceDiagram;
+using FluentMermaid.SequenceDiagram.Enum;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MermaidBlazorWebApp.Controllers;
@@ -11,6 +13,31 @@ public class MermaidController : ControllerBase
 {
     [HttpGet]
     public string Get()
+    {
+        return CreateSeqDiag();
+    }
+
+    private static string CreateSeqDiag()
+    {
+        var d = new SequenceDiagram();
+        var alice = d.AddMember("Alice", MemberType.Actor);
+        var bob = d.AddMember("Bob", MemberType.Participant);
+        
+        d.Message(alice, bob, "hi", MessageType.Solid);
+        d.Note(alice, NoteLocation.Over, "Fffadsada");
+        using (d.Activate(alice))
+        {
+            d.Message(bob, alice, "hi", MessageType.Solid);
+            d.Note(bob, NoteLocation.RightOf, "Fff");    
+        }
+        
+        d.NoteOver("ended", alice, bob);
+        
+
+        return d.Render();
+    }
+
+    private static string CreateFlowChart()
     {
         var chart = FlowChart.Create(Orientation.TopToBottom);
         var cat = chart.TextNode("Cat", Shape.Circle);
