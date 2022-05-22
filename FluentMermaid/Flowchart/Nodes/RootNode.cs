@@ -25,9 +25,9 @@ internal class RootNode : IFlowChart
         return textNode;
     }
 
-    public ISubGraph SubGraph(string title)
+    public ISubGraph SubGraph(string title, Orientation orientation)
     {
-        var subgraph = new SubGraphNode(CreateNodeId(), title);
+        var subgraph = new SubGraphNode(CreateNodeId(), title, orientation);
         Nodes.Add(subgraph);
         return subgraph;
     }

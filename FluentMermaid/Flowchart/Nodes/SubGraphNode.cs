@@ -5,7 +5,11 @@ using FluentMermaid.Flowchart.Interfaces;
 
 namespace FluentMermaid.Flowchart.Nodes;
 
-internal record SubGraphNode(string Id, string Title) : ISubGraph
+internal record SubGraphNode(
+    string Id,
+    string Title,
+    Orientation Orientation)
+    : ISubGraph
 {
     private HashSet<INode> Nodes { get; } = new();
 
@@ -18,22 +22,27 @@ internal record SubGraphNode(string Id, string Title) : ISubGraph
         return textNode;
     }
 
-    public ISubGraph SubGraph(string title)
+    public ISubGraph SubGraph(string title, Orientation orientation)
     {
-        var subgraph = new SubGraphNode(CreateNodeId(), title);
+        var subgraph = new SubGraphNode(CreateNodeId(), title, orientation);
         Nodes.Add(subgraph);
         return subgraph;
     }
 
     public void RenderTo(StringBuilder builder)
     {
-        builder.Append("subgraph ")
+        builder
+            .Append("subgraph ")
             .Append(Id)
             .Append(' ')
             .Append("[\"")
             .WriteEscaped(Title)
             .AppendLine("\"]");
-        
+
+        builder
+            .Append("direction ")
+            .AppendLine(Orientation.Render());
+
         foreach (INode node in Nodes)
             node.RenderTo(builder);
 

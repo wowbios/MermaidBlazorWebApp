@@ -16,11 +16,11 @@ public class MermaidController : ControllerBase
         var cat = chart.TextNode("Cat", Shape.Circle);
         var dog = chart.TextNode("Dog", Shape.Trapezoid);
         
-        var places = chart.SubGraph("Places");
+        var places = chart.SubGraph("Places", Orientation.LeftToRight);
         var house = places.TextNode("house", Shape.Cylinder);
         var outside = places.TextNode("outside", Shape.Cylinder);
 
-        var rooms = places.SubGraph("Rooms");
+        var rooms = places.SubGraph("Rooms", Orientation.TopToBottom);
         var kitchen = rooms.TextNode("Kitchen", Shape.RoundEdges);
         var bedroom = rooms.TextNode("Bedroom", Shape.RoundEdges);
 

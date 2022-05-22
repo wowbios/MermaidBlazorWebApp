@@ -6,7 +6,7 @@ public interface IGraph
 {
     INode TextNode(string content, Shape shape);
     
-    ISubGraph SubGraph(string title);
+    ISubGraph SubGraph(string title, Orientation orientation);
     
     void Link(
         INode from,
