@@ -12,6 +12,9 @@ internal record Styling(string Id) : IStyling
     
     public void RenderTo(StringBuilder builder)
     {
+        if (!string.IsNullOrWhiteSpace(DefaultStyle))
+            new StylingClass("default", DefaultStyle).RenderTo(builder);
+
         _classes.ForEach(sc => sc.RenderTo(builder));
 
         foreach ((string id, string classId) in _classNodes)
@@ -42,6 +45,8 @@ internal record Styling(string Id) : IStyling
 
     public void SetClass(INode node, string className)
         => _classNodes.Add((node.Id, className));
+
+    public string? DefaultStyle { get; set; }
 
     public IStylingClass AddClass(string css)
     {

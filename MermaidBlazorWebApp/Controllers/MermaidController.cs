@@ -37,7 +37,8 @@ public class MermaidController : ControllerBase
         
         chart.Styling.Set(cat, "fill: #bff");
 
-        var myClass = chart.Styling.AddClass("color:pink, background-color: black");
+        var myClass = chart.Styling.AddClass("color:#bff");
+        chart.Styling.DefaultStyle = "color:pink,background-color:black";
         chart.Styling.SetClass(kitchen, myClass);
         chart.Styling.SetClass(outside, myClass);
         
