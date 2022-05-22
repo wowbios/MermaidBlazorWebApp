@@ -38,8 +38,8 @@ public class MermaidController : ControllerBase
         chart.Styling.Set(cat, "fill: #bff");
 
         var myClass = chart.Styling.AddClass("color:pink, background-color: black");
-        chart.Styling.Set(kitchen, myClass);
-        chart.Styling.Set(outside, myClass);
+        chart.Styling.SetClass(kitchen, myClass);
+        chart.Styling.SetClass(outside, myClass);
         
         return chart.Render();
     }

@@ -4,7 +4,9 @@ public interface IStyling : INode
 {
     void Set(INode node, string css);
 
-    void Set(INode node, IStylingClass stylingClass);
+    void SetClass(INode node, IStylingClass stylingClass);
+
+    void SetClass(INode node, string className);
 
     IStylingClass AddClass(string css);
 }

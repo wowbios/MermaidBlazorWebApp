@@ -37,8 +37,11 @@ internal record Styling(string Id) : IStyling
     public void Set(INode node, string css)
         => _styles.Add((node.Id, css));
 
-    public void Set(INode node, IStylingClass stylingClass)
+    public void SetClass(INode node, IStylingClass stylingClass)
         => _classNodes.Add((node.Id, stylingClass.Id));
+
+    public void SetClass(INode node, string className)
+        => _classNodes.Add((node.Id, className));
 
     public IStylingClass AddClass(string css)
     {
