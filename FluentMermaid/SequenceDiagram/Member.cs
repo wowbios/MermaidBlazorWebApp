@@ -5,12 +5,25 @@ using FluentMermaid.SequenceDiagram.Interfaces;
 
 namespace FluentMermaid.SequenceDiagram;
 
-internal record Member(
-    string Id,
-    string Name,
-    MemberType Type) : IMember
+internal readonly struct Member : IMember
 {
+    public Member(
+        string id,
+        string name,
+        MemberType type)
+    {
+        Id = id;
+        Name = name;
+        Type = type;
+    }
+
     public List<MemberLink> Links { get; } = new();
+    
+    public string Id { get; }
+    
+    public string Name { get; }
+    
+    public MemberType Type { get; }
 
     public void RenderTo(StringBuilder builder)
     {

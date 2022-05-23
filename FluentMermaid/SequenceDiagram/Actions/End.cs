@@ -3,7 +3,7 @@ using FluentMermaid.SequenceDiagram.Interfaces;
 
 namespace FluentMermaid.SequenceDiagram.Actions;
 
-internal record End : IAction
+internal readonly struct End : IAction
 {
     public void RenderTo(StringBuilder builder)
         => builder.AppendLine("end");

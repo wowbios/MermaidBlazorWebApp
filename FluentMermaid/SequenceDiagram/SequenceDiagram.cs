@@ -43,9 +43,9 @@ public sealed class SequenceDiagram : ISequenceDiagram
         _ = member ?? throw new ArgumentNullException(nameof(member));
         _ = action ?? throw new ArgumentNullException(nameof(action));
 
-        ActivateMember(member);
+        _actions.Add(new Activate(member));
         action(this);
-        DeactivateMember(member);
+        _actions.Add(new Deactivate(member));
     }
 
     public void Loop(string? title, Action<ISequenceDiagram> action)
@@ -110,7 +110,7 @@ public sealed class SequenceDiagram : ISequenceDiagram
         _actions.Add(new End());
     }
 
-    public void Parallel(params (string? title, Action<ISequenceDiagram> action)[] blocks)
+    public void Parallel(params (string? title, Action<ISequenceDiagram>? action)[] blocks)
         => Parallel(blocks.AsEnumerable());
 
     public void Rect(Color color, Action<ISequenceDiagram> action)
@@ -157,12 +157,6 @@ public sealed class SequenceDiagram : ISequenceDiagram
 
         return builder.ToString();
     }
-
-    internal void ActivateMember(IMember member)
-        => _actions.Add(new Activate(member));
-    
-    internal void DeactivateMember(IMember member)
-        => _actions.Add(new Deactivate(member));
 
     private string CreateMemberId() => "member" + _members.Count;
 }

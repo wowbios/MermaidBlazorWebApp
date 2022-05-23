@@ -1,18 +1,16 @@
-﻿using System.Collections.Immutable;
-using System.Text;
+﻿using System.Text;
 
 namespace FluentMermaid.Flowchart.Extensions;
 
 internal static class StringBuilderExtensions
 {
-    private static readonly ImmutableDictionary<char, string> EscapeCharacters =
-        new Dictionary<char, string>()
-        {
-            {'\"', "#quot;"},
-            {'#', "#35;"},
-            {'<', "#lt;"},
-            {'>', "#gt;"}
-        }.ToImmutableDictionary();
+    private static readonly Dictionary<char, string> EscapeCharacters = new()
+    {
+        { '\"', "#quot;" },
+        { '#', "#35;" },
+        { '<', "#lt;" },
+        { '>', "#gt;" }
+    };
 
     internal static StringBuilder WriteEscaped(this StringBuilder builder, IEnumerable<char>? text)
     {

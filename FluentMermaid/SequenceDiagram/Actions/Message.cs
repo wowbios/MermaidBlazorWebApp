@@ -5,13 +5,28 @@ using FluentMermaid.SequenceDiagram.Interfaces;
 
 namespace FluentMermaid.SequenceDiagram.Actions;
 
-internal record Message(
-    IMember From,
-    IMember To,
-    string Text,
-    MessageType Type
-) : IAction
+internal readonly struct Message : IAction
 {
+    public Message(
+        IMember from,
+        IMember to,
+        string text,
+        MessageType type)
+    {
+        From = from;
+        To = to;
+        Text = text;
+        Type = type;
+    }
+
+    public IMember From { get; }
+
+    public IMember To { get; }
+
+    public string Text { get; }
+
+    public MessageType Type { get; }
+
     public void RenderTo(StringBuilder builder)
     {
         builder

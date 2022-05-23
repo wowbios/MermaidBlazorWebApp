@@ -3,8 +3,15 @@ using FluentMermaid.SequenceDiagram.Interfaces;
 
 namespace FluentMermaid.SequenceDiagram.Actions;
 
-internal record Deactivate(IMember Member) : IAction
+internal readonly struct Deactivate : IAction
 {
+    public Deactivate(IMember member)
+    {
+        Member = member;
+    }
+
+    public IMember Member { get; }
+
     public void RenderTo(StringBuilder builder)
     {
         builder

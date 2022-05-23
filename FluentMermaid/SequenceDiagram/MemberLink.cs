@@ -4,17 +4,23 @@ using FluentMermaid.SequenceDiagram.Interfaces;
 
 namespace FluentMermaid.SequenceDiagram;
 
-internal class MemberLink : IRenderTo<StringBuilder>
+internal readonly struct MemberLink : IRenderTo<StringBuilder>
 {
-    public MemberLink(IMember member, string label, Uri url)
+    public MemberLink(Member member, string label, Uri url)
     {
         if (string.IsNullOrWhiteSpace(label))
             throw new ArgumentException("Label should not be null or empty", nameof(label));
-        
+
         Member = member;
         Label = label;
         Url = url;
     }
+
+    public Member Member { get; }
+
+    public string Label { get; }
+
+    public Uri Url { get; }
 
     public void RenderTo(StringBuilder builder)
     {
@@ -25,8 +31,4 @@ internal class MemberLink : IRenderTo<StringBuilder>
             .Append(Url)
             .Append('\"');
     }
-
-    public IMember Member { get; }
-    public string Label { get; }
-    public Uri Url { get; }
 }

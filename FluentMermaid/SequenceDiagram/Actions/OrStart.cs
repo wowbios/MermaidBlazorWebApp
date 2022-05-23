@@ -3,8 +3,15 @@ using FluentMermaid.SequenceDiagram.Interfaces;
 
 namespace FluentMermaid.SequenceDiagram.Actions;
 
-internal record OrStart(string? Title) : IAction
+internal readonly struct OrStart : IAction
 {
+    public OrStart(string? title)
+    {
+        Title = title;
+    }
+
+    public string? Title { get; }
+
     public void RenderTo(StringBuilder builder)
     {
         builder

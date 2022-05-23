@@ -23,7 +23,7 @@ public interface ISequenceDiagram
 
     void Parallel(IEnumerable<(string? title, Action<ISequenceDiagram>? action)> blocks);
 
-    void Parallel(params (string? title, Action<ISequenceDiagram> action)[] blocks);
+    void Parallel(params (string? title, Action<ISequenceDiagram>? action)[] blocks);
 
     void Rect(Color color, Action<ISequenceDiagram> action);
 

@@ -5,12 +5,19 @@ using FluentMermaid.Flowchart.Interfaces;
 
 namespace FluentMermaid.Flowchart.Nodes.Interaction;
 
-internal record InteractionNode(string Id) : IInteraction
+internal record InteractionNode : IInteraction
 {
     private readonly List<Callback> _callbacks = new();
     private readonly List<CallbackCall> _callbackCalls = new();
     private readonly List<Hyperlink> _hyperlinks = new();
-    
+
+    public InteractionNode(string id)
+    {
+        Id = id;
+    }
+
+    public string Id { get; }
+
     public void RenderTo(StringBuilder builder)
     {
         _callbacks.ForEach(cb => cb.RenderTo(builder));
@@ -26,4 +33,9 @@ internal record InteractionNode(string Id) : IInteraction
 
     public void Hyperlink(INode node, Uri url, string tooltip, HyperlinkTarget target)
         => _hyperlinks.Add(new Hyperlink(node.Id, url, tooltip, target));
+
+    public void Deconstruct(out string Id)
+    {
+        Id = this.Id;
+    }
 }

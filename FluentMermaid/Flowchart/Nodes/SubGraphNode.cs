@@ -5,16 +5,28 @@ using FluentMermaid.Flowchart.Interfaces;
 
 namespace FluentMermaid.Flowchart.Nodes;
 
-internal record SubGraphNode(
-    string Id,
-    string Title,
-    Orientation Orientation)
-    : ISubGraph
+internal record SubGraphNode : ISubGraph
 {
+    public SubGraphNode(
+        string id,
+        string title,
+        Orientation orientation)
+    {
+        Id = id;
+        Title = title;
+        Orientation = orientation;
+    }
+
+    public string Id { get; }
+    
+    public string Title { get; }
+    
+    public Orientation Orientation { get; }
+
     private HashSet<INode> Nodes { get; } = new();
 
     private HashSet<Relation> Relations { get; } = new();
-
+    
     public INode TextNode(string content, Shape shape)
     {
         TextNode textNode = new(this, CreateNodeId(), content, shape);

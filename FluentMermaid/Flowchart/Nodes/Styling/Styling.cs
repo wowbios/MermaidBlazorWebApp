@@ -4,16 +4,21 @@ using FluentMermaid.Flowchart.Interfaces.Styling;
 
 namespace FluentMermaid.Flowchart.Nodes.Styling;
 
-internal record Styling(string Id) : IStyling
+internal record Styling : IStyling
 {
     private readonly List<(string id, string css)> _styles = new();
     private readonly List<IStylingClass> _classes = new();
     private readonly List<(string id, string classId)> _classNodes = new ();
-    
+
+    public Styling(string id)
+    {
+        Id = id;
+    }
+
     public void RenderTo(StringBuilder builder)
     {
         if (!string.IsNullOrWhiteSpace(DefaultStyle))
-            new StylingClass("default", DefaultStyle).RenderTo(builder);
+            new StylingClass("default", DefaultStyle!).RenderTo(builder);
 
         _classes.ForEach(sc => sc.RenderTo(builder));
 
@@ -47,6 +52,7 @@ internal record Styling(string Id) : IStyling
         => _classNodes.Add((node.Id, className));
 
     public string? DefaultStyle { get; set; }
+    public string Id { get; }
 
     public IStylingClass AddClass(string css)
     {
@@ -56,4 +62,9 @@ internal record Styling(string Id) : IStyling
     }
 
     private string CreateClassId() => "classN" + _classes.Count;
+
+    public void Deconstruct(out string Id)
+    {
+        Id = this.Id;
+    }
 }

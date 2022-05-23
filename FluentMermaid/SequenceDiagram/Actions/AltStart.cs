@@ -1,11 +1,17 @@
-﻿using System.Collections.Immutable;
-using System.Text;
+﻿using System.Text;
 using FluentMermaid.SequenceDiagram.Interfaces;
 
 namespace FluentMermaid.SequenceDiagram.Actions;
 
-internal record AltStart(string? Title) : IAction
+internal readonly struct AltStart : IAction
 {
+    public AltStart(string? title)
+    {
+        Title = title;
+    }
+
+    public string? Title { get; }
+
     public void RenderTo(StringBuilder builder)
     {
         builder

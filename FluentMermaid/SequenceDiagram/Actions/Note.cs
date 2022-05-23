@@ -5,12 +5,24 @@ using FluentMermaid.SequenceDiagram.Interfaces;
 
 namespace FluentMermaid.SequenceDiagram.Actions;
 
-internal record Note(
-    IMember Member,
-    NoteLocation Location,
-    string Text
-    ) : IAction
+internal readonly struct Note : IAction
 {
+    public Note(
+        IMember member,
+        NoteLocation location,
+        string text)
+    {
+        Member = member;
+        Location = location;
+        Text = text;
+    }
+
+    public IMember Member { get; }
+
+    public NoteLocation Location { get; }
+
+    public string Text { get; }
+
     public void RenderTo(StringBuilder builder)
     {
         builder
