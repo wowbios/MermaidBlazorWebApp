@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using System.Text;
+using FluentMermaid.Flowchart.Extensions;
 using FluentMermaid.SequenceDiagram.Actions;
 using FluentMermaid.SequenceDiagram.Enum;
 using FluentMermaid.SequenceDiagram.Interfaces;
@@ -10,6 +11,7 @@ public sealed class SequenceDiagram : ISequenceDiagram
 {
     private readonly bool _autoNumber;
     private readonly List<Member> _members = new();
+    private readonly List<MemberLink> _memberLinks = new();
     private readonly List<IAction> _actions = new();
 
     public SequenceDiagram(bool autoNumber = false)
@@ -92,12 +94,12 @@ public sealed class SequenceDiagram : ISequenceDiagram
         _actions.Add(new NoteOver(members, text));
     }
 
-    public void Parallel(IEnumerable<(string? title, Action<ISequenceDiagram> action)> blocks)
+    public void Parallel(IEnumerable<(string? title, Action<ISequenceDiagram>? action)> blocks)
     {
         _ = blocks ?? throw new ArgumentNullException(nameof(blocks));
 
         bool isFirst = true;
-        foreach ((string? title, Action<ISequenceDiagram> action) in blocks)
+        foreach ((string? title, Action<ISequenceDiagram>? action) in blocks)
         {
             _actions.Add(new ParallelStart(title, isFirst));
             
@@ -127,7 +129,30 @@ public sealed class SequenceDiagram : ISequenceDiagram
         if (_autoNumber)
             builder.AppendLine("autonumber");
 
-        _members.ForEach(m => m.RenderTo(builder));
+        foreach (Member member in _members)
+            member.RenderTo(builder);
+
+        foreach (Member member in _members)
+        {
+            if (member.Links.Count <= 0) continue;
+
+            builder
+                .Append("links ")
+                .Append(member.Id)
+                .Append(": {");
+
+            bool first = true;
+            foreach (MemberLink memberLink in member.Links)
+            {
+                if (!first)
+                    builder.Append(", ");
+
+                memberLink.RenderTo(builder);
+                first = false;
+            }
+            builder.AppendLine("}");
+        }
+
         _actions.ForEach(a => a.RenderTo(builder));
 
         return builder.ToString();

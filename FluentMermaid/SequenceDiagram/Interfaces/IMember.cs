@@ -8,4 +8,6 @@ public interface IMember : INode
     string Name { get; }
     
     MemberType Type { get; }
+
+    void AddLink(string label, Uri url);
 }

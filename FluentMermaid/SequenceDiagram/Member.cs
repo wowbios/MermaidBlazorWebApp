@@ -10,6 +10,8 @@ internal record Member(
     string Name,
     MemberType Type) : IMember
 {
+    public List<MemberLink> Links { get; } = new();
+
     public void RenderTo(StringBuilder builder)
     {
         builder.Append(Type.Render())
@@ -17,5 +19,13 @@ internal record Member(
             .Append(Id)
             .Append(" as ")
             .AppendLine(Name);
+    }
+
+    public void AddLink(string label, Uri url)
+    {
+        if (Type != MemberType.Participant)
+            throw new InvalidOperationException("Links can be attached only to participants");
+        
+        Links.Add(new MemberLink(this, label, url));
     }
 }

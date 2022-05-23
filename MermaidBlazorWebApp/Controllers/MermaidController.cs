@@ -22,8 +22,12 @@ public class MermaidController : ControllerBase
     private static string CreateSeqDiag()
     {
         var d = new SequenceDiagram(autoNumber:true);
-        var alice = d.AddMember("Alice", MemberType.Actor);
+        var alice = d.AddMember("Alice", MemberType.Participant);
+        alice.AddLink("Dashboard", new Uri("https://dashboard.contoso.com/alice"));
+        alice.AddLink("Wiki", new Uri("https://wiki.contoso.com/alice"));
+        
         var bob = d.AddMember("Bob", MemberType.Participant);
+        bob.AddLink("Wiki", new Uri("https://wiki.contoso.com/alice"));
 
         d.Rect(Color.Aqua, _ =>
             d.Message(alice, bob, "hi", MessageType.Solid));

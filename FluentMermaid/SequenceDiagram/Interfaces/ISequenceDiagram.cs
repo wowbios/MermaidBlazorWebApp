@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using System.Text;
 using FluentMermaid.SequenceDiagram.Enum;
 
 namespace FluentMermaid.SequenceDiagram.Interfaces;
@@ -22,7 +21,7 @@ public interface ISequenceDiagram
 
     void NoteOver(string text, params IMember[] members);
 
-    void Parallel(IEnumerable<(string? title, Action<ISequenceDiagram> action)> blocks);
+    void Parallel(IEnumerable<(string? title, Action<ISequenceDiagram>? action)> blocks);
 
     void Parallel(params (string? title, Action<ISequenceDiagram> action)[] blocks);
 
