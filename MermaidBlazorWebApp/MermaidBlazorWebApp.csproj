@@ -11,4 +11,16 @@
       <ProjectReference Include="..\FluentMermaid\FluentMermaid.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Content Include="..\..\FluentMermaid\src\FluentMermaid\bin\Debug\netstandard2.0\FluentMermaid.dll">
+        <Link>FluentMermaid.dll</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="FluentMermaid, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\FluentMermaid\src\FluentMermaid\bin\Debug\netstandard2.0\FluentMermaid.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

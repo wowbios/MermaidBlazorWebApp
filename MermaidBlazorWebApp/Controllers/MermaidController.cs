@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using FluentMermaid.ClassDiagram;
 using FluentMermaid.Flowchart;
 using FluentMermaid.Flowchart.Enum;
 using FluentMermaid.Flowchart.Nodes;
@@ -16,7 +17,19 @@ public class MermaidController : ControllerBase
     [HttpGet]
     public string Get()
     {
-        return CreateSeqDiag();
+        return CreateClassDiag();
+    }
+
+    private static string CreateClassDiag()
+    {
+        var d = ClassDiagram.Create(Orientation.RightToLeft);
+        var c1 = d.AddClass("myNew1");
+        var c2 = d.AddClass("%^&!%#^&AAAG#");
+        c1.AddFunction("alert", "int", "a", "b", "c");
+        c1.AddProperty("SomeProp");
+
+        c2.AddProperty("+OtherProp");
+        return d.Render();
     }
 
     private static string CreateSeqDiag()
