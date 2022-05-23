@@ -9,9 +9,8 @@
    7. [Subgraph](https://mermaid-js.github.io/mermaid/#/flowchart?id=subgraphs) :heavy_check_mark:
    8. [Interaction](https://mermaid-js.github.io/mermaid/#/flowchart?id=interaction) :heavy_check_mark:
    9. Styling
-      1. [Links](https://mermaid-js.github.io/mermaid/#/flowchart?id=styling-links) :x: wont be added
-      2. [Nodes](https://mermaid-js.github.io/mermaid/#/flowchart?id=styling-a-node) :heavy_check_mark:
-      3. [Css](https://mermaid-js.github.io/mermaid/#/flowchart?id=css-classes) :heavy_check_mark:
+      1. [Nodes](https://mermaid-js.github.io/mermaid/#/flowchart?id=styling-a-node) :heavy_check_mark:
+      2. [Css](https://mermaid-js.github.io/mermaid/#/flowchart?id=css-classes) :heavy_check_mark:
 2. [Sequence diagram](https://mermaid-js.github.io/mermaid/#/sequenceDiagram) :x:
    1. [Syntax](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=syntax) :heavy_check_mark:
    2. [Messages](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=messages) :heavy_check_mark:
@@ -23,7 +22,6 @@
    8. [Background highlighting](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=background-highlighting) :heavy_check_mark:
    9. [SequenceNumbers](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=sequencenumbers) :heavy_check_mark:
    10. [Participant menus](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=actor-menus) :heavy_check_mark:
-   11. [Styling](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=styling) :x:
 3. [Class diagram](https://mermaid-js.github.io/mermaid/#/classDiagram) :x:
 4. [State diagram](https://mermaid-js.github.io/mermaid/#/stateDiagram) :x:
 5. [Entity relationship](https://mermaid-js.github.io/mermaid/#/entityRelationshipDiagram) :x:
