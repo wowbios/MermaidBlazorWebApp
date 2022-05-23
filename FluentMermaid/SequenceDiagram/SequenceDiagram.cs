@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Drawing;
+using System.Text;
 using FluentMermaid.SequenceDiagram.Actions;
 using FluentMermaid.SequenceDiagram.Enum;
 using FluentMermaid.SequenceDiagram.Interfaces;
@@ -103,6 +104,15 @@ public sealed class SequenceDiagram : ISequenceDiagram
 
     public void Parallel(params (string? title, Action<ISequenceDiagram> action)[] blocks)
         => Parallel(blocks.AsEnumerable());
+
+    public void Rect(Color color, Action<ISequenceDiagram> action)
+    {
+        _ = action ?? throw new ArgumentNullException(nameof(action));
+
+        _actions.Add(new Rect(color));
+        action(this);
+        _actions.Add(new End());
+    }
 
     public string Render()
     {
