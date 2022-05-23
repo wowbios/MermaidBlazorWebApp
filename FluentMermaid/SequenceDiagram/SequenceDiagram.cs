@@ -1,6 +1,5 @@
 ﻿using System.Text;
 using FluentMermaid.SequenceDiagram.Actions;
-using FluentMermaid.SequenceDiagram.Aggregates;
 using FluentMermaid.SequenceDiagram.Enum;
 using FluentMermaid.SequenceDiagram.Interfaces;
 
@@ -13,6 +12,9 @@ public sealed class SequenceDiagram : ISequenceDiagram
     
     public IMember AddMember(string name, MemberType type)
     {
+        if (string.IsNullOrWhiteSpace(name))
+            throw new ArgumentException("Name should not be null or empty", nameof(name));
+        
         var member = new Member(CreateMemberId(), name, type);
         _members.Add(member);
         return member;
@@ -20,21 +22,68 @@ public sealed class SequenceDiagram : ISequenceDiagram
 
     public void Message(IMember from, IMember to, string text, MessageType type)
     {
+        _ = @from ?? throw new ArgumentNullException(nameof(@from));
+        _ = to ?? throw new ArgumentNullException(nameof(to));
+
         var message = new Message(from, to, text, type);
         _actions.Add(message);
     }
 
-    public IActivation Activate(IMember member)
-        => new Activation(member, this);
+    public void Activate(IMember member, Action<ISequenceDiagram> action)
+    {
+        _ = member ?? throw new ArgumentNullException(nameof(member));
+        _ = action ?? throw new ArgumentNullException(nameof(action));
 
-    public ILoop Loop(string title)
-        => new Loop(this, title);
+        ActivateMember(member);
+        action(this);
+        DeactivateMember(member);
+    }
+
+    public void Loop(string? title, Action<ISequenceDiagram> action)
+    {
+         _ = action ?? throw new ArgumentNullException(nameof(action));
+
+         _actions.Add(new StartLoop(title));
+        action(this);
+        _actions.Add(new End());
+    }
+
+    public void AltOr(string? altTitle, Action<ISequenceDiagram> altAction, string? orTitle, Action<ISequenceDiagram> orAction)
+    {
+        _ = altAction ?? throw new ArgumentNullException(nameof(altAction));
+        _ = orAction ?? throw new ArgumentNullException(nameof(orAction));
+
+        _actions.Add(new AltStart(altTitle));
+        altAction(this);
+        _actions.Add(new OrStart(orTitle));
+        orAction(this);
+        _actions.Add(new End());
+    }
+
+    public void Optional(string? title, Action<ISequenceDiagram> action)
+    {
+        _ = action ?? throw new ArgumentNullException(nameof(action));
+        
+        _actions.Add(new OptStart(title));
+        action(this);
+        _actions.Add(new End());
+    }
 
     public void Note(IMember member, NoteLocation location, string text)
-        => _actions.Add(new Note(member, location, text));
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            throw new ArgumentException("Text should not be null or empty", nameof(text));
+
+        _actions.Add(new Note(member, location, text));
+    }
 
     public void NoteOver(string text, params IMember[] members)
-        => _actions.Add(new NoteOver(members, text));
+    {
+        if (string.IsNullOrWhiteSpace(text))
+            throw new ArgumentException("Text should not be null or empty", nameof(text));
+        
+        _actions.Add(new NoteOver(members, text));
+    }
 
     public string Render()
     {
@@ -51,12 +100,6 @@ public sealed class SequenceDiagram : ISequenceDiagram
     
     internal void DeactivateMember(IMember member)
         => _actions.Add(new Deactivate(member));
-
-    internal void LoopStart(string text)
-        => _actions.Add(new StartLoop(text));
-
-    internal void LoopEnd()
-        => _actions.Add(new End());
 
     private string CreateMemberId() => "member" + _members.Count;
 }

@@ -1,14 +1,15 @@
-﻿using System.Text;
+﻿using System.Collections.Immutable;
+using System.Text;
 using FluentMermaid.SequenceDiagram.Interfaces;
 
 namespace FluentMermaid.SequenceDiagram.Actions;
 
-internal record StartLoop(string? Title) : IAction
+internal record AltStart(string? Title) : IAction
 {
     public void RenderTo(StringBuilder builder)
     {
         builder
-            .Append("loop ")
+            .Append("alt ")
             .AppendLine(Title);
     }
 }

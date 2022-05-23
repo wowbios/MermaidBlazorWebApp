@@ -9,9 +9,13 @@ public interface ISequenceDiagram
 
     void Message(IMember from, IMember to, string text, MessageType type);
 
-    IActivation Activate(IMember member);
+    void Activate(IMember member, Action<ISequenceDiagram> action);
 
-    ILoop Loop(string title);
+    void Loop(string? title, Action<ISequenceDiagram> action);
+
+    void AltOr(string? altTitle, Action<ISequenceDiagram> altAction, string? orTitle, Action<ISequenceDiagram> orAction);
+
+    void Optional(string? title, Action<ISequenceDiagram> action);
 
     void Note(IMember member, NoteLocation location, string text);
 

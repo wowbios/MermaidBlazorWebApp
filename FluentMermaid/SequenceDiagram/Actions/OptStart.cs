@@ -3,12 +3,12 @@ using FluentMermaid.SequenceDiagram.Interfaces;
 
 namespace FluentMermaid.SequenceDiagram.Actions;
 
-internal record StartLoop(string? Title) : IAction
+internal record OptStart(string? Title) : IAction
 {
     public void RenderTo(StringBuilder builder)
     {
         builder
-            .Append("loop ")
+            .Append("opt ")
             .AppendLine(Title);
     }
 }

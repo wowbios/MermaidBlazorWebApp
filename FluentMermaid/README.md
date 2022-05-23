@@ -18,7 +18,7 @@
    3. [Activations](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=activations) :heavy_check_mark:
    4. [Notes](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=notes) :heavy_check_mark:
    5. [Loops](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=loops) :heavy_check_mark:
-   6. [Alt](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=alt) :x:
+   6. [Alt](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=alt) :heavy_check_mark:
    7. [Parallel](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=parallel) :x:
    8. [Background highlighting](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=background-highlighting) :x:
    9. [SequenceNumbers](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=sequencenumbers) :x:

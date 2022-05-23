@@ -25,15 +25,8 @@ public class MermaidController : ControllerBase
         
         d.Message(alice, bob, "hi", MessageType.Solid);
         d.Note(alice, NoteLocation.Over, "Fffadsada");
-        using (d.Activate(alice))
-        {
-            using (d.Loop("FOREVER"))
-            {
-                d.Message(bob, alice, "hi", MessageType.Solid);
-            }
-            d.Note(bob, NoteLocation.RightOf, "Fff");
-        }
-        
+        d.Optional("OPTIL", x => x.Message(bob, alice, "hi0", MessageType.Solid));
+        d.Note(bob, NoteLocation.RightOf, "Fff");
         d.NoteOver("ended", alice, bob);
         
 
