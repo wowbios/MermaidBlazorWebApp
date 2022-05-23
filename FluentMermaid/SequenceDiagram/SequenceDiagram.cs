@@ -8,8 +8,14 @@ namespace FluentMermaid.SequenceDiagram;
 
 public sealed class SequenceDiagram : ISequenceDiagram
 {
+    private readonly bool _autoNumber;
     private readonly List<Member> _members = new();
     private readonly List<IAction> _actions = new();
+
+    public SequenceDiagram(bool autoNumber = false)
+    {
+        _autoNumber = autoNumber;
+    }
     
     public IMember AddMember(string name, MemberType type)
     {
@@ -118,6 +124,9 @@ public sealed class SequenceDiagram : ISequenceDiagram
     {
         StringBuilder builder = new();
         builder.AppendLine("sequenceDiagram");
+        if (_autoNumber)
+            builder.AppendLine("autonumber");
+
         _members.ForEach(m => m.RenderTo(builder));
         _actions.ForEach(a => a.RenderTo(builder));
 

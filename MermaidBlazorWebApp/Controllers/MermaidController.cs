@@ -21,12 +21,16 @@ public class MermaidController : ControllerBase
 
     private static string CreateSeqDiag()
     {
-        var d = new SequenceDiagram();
+        var d = new SequenceDiagram(autoNumber:true);
         var alice = d.AddMember("Alice", MemberType.Actor);
         var bob = d.AddMember("Bob", MemberType.Participant);
 
         d.Rect(Color.Aqua, _ =>
             d.Message(alice, bob, "hi", MessageType.Solid));
+        d.Message(alice, bob, "hi", MessageType.Solid);
+        d.Message(alice, bob, "hi", MessageType.Solid);
+        d.Message(alice, bob, "hi", MessageType.Solid);
+        d.Message(alice, bob, "hi", MessageType.Solid);
             
         return d.Render();
     }
