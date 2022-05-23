@@ -21,5 +21,7 @@ public interface ISequenceDiagram
 
     void NoteOver(string text, params IMember[] members);
 
+    void Parallel(IEnumerable<(string? title, Action<ISequenceDiagram> action)> blocks);
+
     string Render();
 }

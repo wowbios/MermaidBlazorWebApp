@@ -3,6 +3,7 @@ using FluentMermaid.Flowchart.Enum;
 using FluentMermaid.Flowchart.Nodes;
 using FluentMermaid.SequenceDiagram;
 using FluentMermaid.SequenceDiagram.Enum;
+using FluentMermaid.SequenceDiagram.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MermaidBlazorWebApp.Controllers;
@@ -23,12 +24,11 @@ public class MermaidController : ControllerBase
         var alice = d.AddMember("Alice", MemberType.Actor);
         var bob = d.AddMember("Bob", MemberType.Participant);
         
-        d.Message(alice, bob, "hi", MessageType.Solid);
-        d.Note(alice, NoteLocation.Over, "Fffadsada");
-        d.Optional("OPTIL", x => x.Message(bob, alice, "hi0", MessageType.Solid));
-        d.Note(bob, NoteLocation.RightOf, "Fff");
-        d.NoteOver("ended", alice, bob);
-        
+        d.Parallel(new (string, Action<ISequenceDiagram>) []
+        {
+            ("par1", x=>x.Message(alice, bob, "hi", MessageType.Solid)),
+            ("par2", x=>x.Message(alice, bob, "hi", MessageType.Solid)),
+        });
 
         return d.Render();
     }

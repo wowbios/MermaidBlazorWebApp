@@ -85,6 +85,22 @@ public sealed class SequenceDiagram : ISequenceDiagram
         _actions.Add(new NoteOver(members, text));
     }
 
+    public void Parallel(IEnumerable<(string? title, Action<ISequenceDiagram> action)> blocks)
+    {
+        _ = blocks ?? throw new ArgumentNullException(nameof(blocks));
+
+        bool isFirst = true;
+        foreach ((string? title, Action<ISequenceDiagram> action) in blocks)
+        {
+            _actions.Add(new ParallelStart(title, isFirst));
+            
+            action?.Invoke(this);
+
+            isFirst = false;
+        }
+        _actions.Add(new End());
+    }
+
     public string Render()
     {
         StringBuilder builder = new();
