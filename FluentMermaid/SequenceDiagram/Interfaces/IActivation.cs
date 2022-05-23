@@ -2,4 +2,5 @@
 
 public interface IActivation : IDisposable
 {
+    IMember Member { get; }
 }

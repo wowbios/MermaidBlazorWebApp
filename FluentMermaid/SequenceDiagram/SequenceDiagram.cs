@@ -27,6 +27,9 @@ public sealed class SequenceDiagram : ISequenceDiagram
     public IActivation Activate(IMember member)
         => new Activation(member, this);
 
+    public ILoop Loop(string title)
+        => new Loop(this, title);
+
     public void Note(IMember member, NoteLocation location, string text)
         => _actions.Add(new Note(member, location, text));
 
@@ -48,6 +51,12 @@ public sealed class SequenceDiagram : ISequenceDiagram
     
     internal void DeactivateMember(IMember member)
         => _actions.Add(new Deactivate(member));
+
+    internal void LoopStart(string text)
+        => _actions.Add(new StartLoop(text));
+
+    internal void LoopEnd()
+        => _actions.Add(new End());
 
     private string CreateMemberId() => "member" + _members.Count;
 }

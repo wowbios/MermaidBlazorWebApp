@@ -11,6 +11,8 @@ public interface ISequenceDiagram
 
     IActivation Activate(IMember member);
 
+    ILoop Loop(string title);
+
     void Note(IMember member, NoteLocation location, string text);
 
     void NoteOver(string text, params IMember[] members);

@@ -16,7 +16,14 @@
    1. [Syntax](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=syntax) :heavy_check_mark:
    2. [Messages](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=messages) :heavy_check_mark:
    3. [Activations](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=activations) :heavy_check_mark:
-   4. ...
+   4. [Notes](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=notes) :heavy_check_mark:
+   5. [Loops](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=loops) :heavy_check_mark:
+   6. [Alt](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=alt) :x:
+   7. [Parallel](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=parallel) :x:
+   8. [Background highlighting](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=background-highlighting) :x:
+   9. [SequenceNumbers](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=sequencenumbers) :x:
+   10. [Actor menus](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=actor-menus) :x:
+   11. [Styling](https://mermaid-js.github.io/mermaid/#/sequenceDiagram?id=styling) :x:
 3. [Class diagram](https://mermaid-js.github.io/mermaid/#/classDiagram) :x:
 4. [State diagram](https://mermaid-js.github.io/mermaid/#/stateDiagram) :x:
 5. [Entity relationship](https://mermaid-js.github.io/mermaid/#/entityRelationshipDiagram) :x:
