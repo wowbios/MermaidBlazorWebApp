@@ -101,6 +101,9 @@ public sealed class SequenceDiagram : ISequenceDiagram
         _actions.Add(new End());
     }
 
+    public void Parallel(params (string? title, Action<ISequenceDiagram> action)[] blocks)
+        => Parallel(blocks.AsEnumerable());
+
     public string Render()
     {
         StringBuilder builder = new();

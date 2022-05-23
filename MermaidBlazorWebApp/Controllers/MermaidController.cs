@@ -26,9 +26,22 @@ public class MermaidController : ControllerBase
         
         d.Parallel(new (string, Action<ISequenceDiagram>) []
         {
-            ("par1", x=>x.Message(alice, bob, "hi", MessageType.Solid)),
+            ("par1", x=>
+            {
+                x.Parallel(new (string, Action<ISequenceDiagram>)[]
+                {
+                    ("inner", xx => xx.Message(alice, bob, "hi", MessageType.Solid))
+                });
+            }),
             ("par2", x=>x.Message(alice, bob, "hi", MessageType.Solid)),
         });
+        d.Parallel(
+            ("par1", x=>
+            {
+                x.Parallel(("inner", xx => xx.Message(alice, bob, "hi", MessageType.Solid)));
+            }),
+            ("par2", x=>x.Message(alice, bob, "hi", MessageType.Solid))
+        );
 
         return d.Render();
     }
